@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import configureStore from './store/configureStore';
 import AppContainer from './containers/AppContainer';
-import Home from './views/index/Home'
-import Discover from './views/index/Discover'
+
 
 const store = configureStore();
 const RouterWithRedux = connect()(Router);
@@ -16,9 +15,8 @@ class Root extends React.Component {
         return (
             <Provider store={store}>
                 <RouterWithRedux>
-                    <Scene key="root">
-                        <Scene key="Home" component={Home} title="Home" initial={true} />
-                        <Scene key="Discover" component={Discover} title="Discover" />
+                    <Scene key="root" hideNavBar={true}>
+                        <Scene key="AppContainer" component={AppContainer} title="App" initial={true} />
                     </Scene>
                 </RouterWithRedux>
             </Provider>
