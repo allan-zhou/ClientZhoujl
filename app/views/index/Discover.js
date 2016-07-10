@@ -8,7 +8,7 @@ export default class Discover extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Discover Discover</Text>
+                <Text style={styles.text}>Discover Page</Text>
             </View>
         );
     }

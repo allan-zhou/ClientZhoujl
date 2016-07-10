@@ -3,12 +3,14 @@
  */
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import TabBar from './../../components/TabBar';
 
 export default class Home extends React.Component{
     render(){
         return(
             <View style={styles.container}>
-                <Text style={styles.text}>Home</Text>
+                <Text>Home Page</Text>
             </View>
         );
     }
@@ -17,9 +19,9 @@ export default class Home extends React.Component{
 let styles = StyleSheet.create({
     container: {
         flex:1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        //flexDirection: 'row',
+        //justifyContent: 'center',
+        //alignItems: 'center',
     },
     text:{
 
