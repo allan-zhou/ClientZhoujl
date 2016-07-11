@@ -31,7 +31,8 @@ class TabBar extends Component {
         const iconName = !isTabActive ? tabsData[tabIndex].icon : tabsData[tabIndex].selectedIcon;
 
         return (
-            <TouchableOpacity key={ tabLabel } style={styles.tab} onPress={() => this.props.goToPage(tabIndex)}>
+            <TouchableOpacity key={ tabLabel } style={styles.tab} activeOpacity={1}
+                              onPress={() => this.props.goToPage(tabIndex)}>
                 <Icon style={ styles.icon } name={ iconName } />
                 <Text style={ styles.text }>
                     { tabsData[tabIndex].CnName }
