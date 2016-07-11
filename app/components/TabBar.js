@@ -33,7 +33,7 @@ class TabBar extends Component {
         return (
             <TouchableOpacity key={ tabLabel } style={styles.tab} onPress={() => this.props.goToPage(tabIndex)}>
                 <Icon style={ styles.icon } name={ iconName } />
-                <Text>
+                <Text style={ styles.text }>
                     { tabsData[tabIndex].CnName }
                 </Text>
             </TouchableOpacity>
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
         paddingTop:5,
     },
     tab: {
+        flex:1,
         justifyContent:'center',
         alignItems:'center',
     },
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
         color:'#900'
     },
     text: {
-
+        fontSize:12,
     },
 });
 

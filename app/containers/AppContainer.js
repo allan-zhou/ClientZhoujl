@@ -35,7 +35,6 @@ class AppContainer extends Component {
 let styles = StyleSheet.create({
     container: {
         flex:1,
-        marginTop:5,
     },
     tabContainer:{
 
