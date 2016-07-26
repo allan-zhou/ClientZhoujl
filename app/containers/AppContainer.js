@@ -1,50 +1,84 @@
 /**
  * Created by ZHOU on 2016/7/7.
  */
+import React from 'react';
+import {
+    StyleSheet,
+    Navigator,
+    StatusBar,
+    BackAndroid,
+    View
+} from 'react-native';
 
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import TabBar from '../components/TabBar';
-import Home from '../views/index/Home';
-import Discover from '../views/index/Discover';
-import Life from '../views/index/Life';
-import My from '../views/index/My';
+import Splash from '../views/Splash';
+import { naviGoBack } from '../utils/CommonUtil';
 
-class AppContainer extends Component {
-    constructor(props){
-        super (props);
+let tempNavigator;
+let isRemoved = false;
+
+class AppContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderScene = this.renderScene.bind(this);
+        this.goBack = this.goBack.bind(this);
+        BackAndroid.addEventListener('hardwareBackPress', this.goBack);
     }
 
-    render(){
-        return(
-            <View style={styles.container}>
-                <ScrollableTabView style={styles.tabContainer} tabBarPosition='bottom'
-                                   renderTabBar={() => <TabBar style={ styles.tabBar } />}>
-                    <Home tabLabel="Home" style={ styles.tabView }/>
-                    <Discover tabLabel="Discover" style={ styles.tabView }/>
-                    <Life tabLabel="Life" style={ styles.tabView }/>
-                    <My tabLabel="My" style={ styles.tabView }/>
-                </ScrollableTabView>
+    goBack() {
+        return naviGoBack(tempNavigator);
+    }
+
+    configureScene() {
+        return Navigator.SceneConfigs.PushFromRight;
+    }
+
+    renderScene(route, navigator) {
+        let Component = route.component;
+        tempNavigator = navigator;
+        if (route.name === 'WebViewPage') {
+            BackAndroid.removeEventListener('hardwareBackPress', this.goBack);
+            isRemoved = true;
+        } else {
+            if (isRemoved) {
+                BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+            }
+        }
+        return (
+            <Component navigator={navigator} route={route} />
+        );
+    }
+
+    render() {
+        return (
+            <View style={ styles.container }>
+                <StatusBar
+                    backgroundColor="#333"
+                    barStyle="default"
+                />
+                <Navigator
+                    ref="navigator"
+                    style={styles.navigator}
+                    configureScene={this.configureScene}
+                    renderScene={this.renderScene}
+                    initialRoute={{
+                        component: Splash,
+                        name: 'Splash'
+                    }}
+                />
             </View>
         );
     }
 }
 
-let styles = StyleSheet.create({
-    container: {
-        flex:1,
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        backgroundColor:'#eee'
     },
-    tabContainer:{
-
+    navigator: {
+        flex: 1
     },
-    tabBar:{
-        paddingBottom:5,
-    },
-    tabView: {
-
-    }
 });
+
 
 export default AppContainer;

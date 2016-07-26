@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  WebView
-} from 'react-native';
+/**
+ * Created by ZHOU on 2016/7/25.
+ */
+import React from 'react';
+import { connect } from 'react-redux';
+import Home from '../views/index/Home';
 
-import WebViewContainer from './WebViewContainer'
+class HomeContainer extends React.Component {
+    componentDidMount() {
 
-export default class HomeContainer extends WebViewContainer {
-    
-      constructor(props){
-        super (props);
+    }
 
-        this.state = {
-            //uri: 'http://mobiletest.yuanxin2015.com/YuanXinClient/views/index.html'
-            uri: 'http://www.baidu.com'
-        };
+    render() {
+        return (
+            <Home {...this.props} />
+        );
     }
 }
+
+function mapStateToProps(state) {
+    const { HomeReducer } = state;
+    return {
+        HomeReducer
+    };
+}
+
+export default connect(mapStateToProps)(HomeContainer);
