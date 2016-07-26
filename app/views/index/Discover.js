@@ -3,14 +3,15 @@
  */
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import NavigationBar from 'react-native-navbar';
+import NavBar from '../../components/NavBar'
 
 export default class Discover extends React.Component{
     render(){
+        const { navigator } = this.props;
+
         return(
             <View style={styles.container}>
-                <NavigationBar style={styles.navBar}
-                               title={{ title:'发现', tintColor:'#fff' }} />
+                <NavBar title='发现' navigator={navigator} />
                 <View style={styles.content}>
                     <Text>Discover Page</Text>
                 </View>
@@ -23,9 +24,6 @@ export default class Discover extends React.Component{
 let styles = StyleSheet.create({
     container: {
         flex:1,
-    },
-    navBar:{
-        backgroundColor: '#333',
     },
     content:{
         flex:1,

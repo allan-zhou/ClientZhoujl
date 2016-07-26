@@ -1,26 +1,37 @@
 /**
  * Created by ZHOU on 2016/6/29.
  */
-import React from 'react';
+import React, { Component }from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-import NavigationBar from 'react-native-navbar';
+import Button from 'react-native-button';
+import NavBar from '../../components/NavBar'
+import { toastShort } from  '../../utils/ToastUtil'
+import Discover from './Discover';
 
-export default class Home extends React.Component{
+
+class Home extends React.Component{
+    _redirectToDiscover(){
+        const { navigator } = this.props;
+
+        navigator.push({
+            component: Discover,
+            name: 'Discover'
+        });
+    }
+
     render(){
+        const { navigator, HomeReducer } = this.props;
+
         return(
             <View style={styles.container}>
-                <NavigationBar style={styles.navBar}
-                               title={{ title:'首页', tintColor:'#fff' } }/>
+                <NavBar title='首页' navigator={ navigator}  />
                 <View style={ styles.content }>
-                    <Text>Home Page</Text>
-                    <View style={ styles.list }>
-                        <View style={ styles.listItem }>
-                            <Text style={{ fontSize:16, }} onPress={ Actions.LiferList }>
-                                点我，进入生活家列表页面!
-                            </Text>
-                        </View>
-                    </View>
+                    <Button
+                        style={{fontSize: 20, color: 'green'}}
+                        styleDisabled={{color: 'red'}}
+                        onPress={() => this._redirectToDiscover()}>
+                        Press Me!
+                    </Button>
                 </View>
 
             </View>
@@ -31,9 +42,6 @@ export default class Home extends React.Component{
 let styles = StyleSheet.create({
     container: {
         flex:1,
-    },
-    navBar:{
-        backgroundColor: '#333',
     },
     content:{
         flex:1,
@@ -48,3 +56,4 @@ let styles = StyleSheet.create({
     },
 });
 
+export default Home;

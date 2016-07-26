@@ -5,37 +5,35 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
-const tabsData =[
-    { CnName:'首页', icon:'ios-home-outline', selectedIcon:'ios-home'},
-    { CnName:'发现', icon:'ios-compass-outline', selectedIcon:'ios-compass'},
-    { CnName:'生活圈', icon:'ios-aperture-outline', selectedIcon:'ios-aperture'},
-    { CnName:'我', icon:'ios-person-outline', selectedIcon:'ios-person'}
-];
-
 const propTypes = {
     goToPage: React.PropTypes.func,
     activeTab: React.PropTypes.number,
     tabs: React.PropTypes.array,
+    tabBarData: React.PropTypes.array,
     onPress: React.PropTypes.func,
 };
 
 class TabBar extends Component {
     constructor(props){
         super (props);
+
+        this.onProess = this.onProess.bind(this);
     }
 
+    onProess(tabIndex){
+        this.props.goToPage(tabIndex)
+    }
 
     renderTabOption(tabLabel, tabIndex){
         const isTabActive = this.props.activeTab === tabIndex;
-        const iconName = !isTabActive ? tabsData[tabIndex].icon : tabsData[tabIndex].selectedIcon;
+        const iconName = !isTabActive ? this.props.tabBarData[tabIndex].icon : this.props.tabBarData[tabIndex].selectedIcon;
 
         return (
             <TouchableOpacity key={ tabLabel } style={styles.tab} activeOpacity={1}
-                              onPress={() => this.props.goToPage(tabIndex)}>
+                              onPress={() => this.onProess(tabIndex)}>
                 <Icon style={ styles.icon } name={ iconName } />
                 <Text style={ styles.text }>
-                    { tabsData[tabIndex].CnName }
+                    { this.props.tabBarData[tabIndex].CnName }
                 </Text>
             </TouchableOpacity>
         );

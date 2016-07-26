@@ -1,7 +1,7 @@
 /**
  * Created by ZHOU on 2016/7/6.
  */
-import * as types from '../constants/ActionTypes';
+import * as types from '../config/ActionTypes';
 
 const initialState = {
     loading: false,
