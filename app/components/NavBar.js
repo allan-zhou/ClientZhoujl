@@ -3,16 +3,16 @@
  */
 import React, { Component,PropTypes } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,TouchableHighlight } from 'react-native';
-import NavigationBar from 'react-native-navbar';
-import Icon from 'react-native-vector-icons/Ionicons';
 import IconFontButton from  './IconFontButton';
 
 const propTypes={
     title : PropTypes.string.isRequired,
     navigator: PropTypes.object.isRequired,
     rightButtonIcon: PropTypes.string,
+    rightButtonIconSize: PropTypes.number,
     rightButtonIconOnPress:PropTypes.func,
     leftButtonIcon:PropTypes.string,
+    leftButtonIconSize: PropTypes.number,
     leftButtonIconOnPress:PropTypes.func,
 };
 
@@ -25,7 +25,7 @@ class NavBar extends React.Component {
                 <IconFontButton iconName={ rightButtonIcon }
                                 containerStyle = { styles.buttonContainer }
                                 iconColor='#fff'
-                                iconSize={20}
+                                iconSize={ this.props.rightButtonIconSize }
                                 onPress={()=> rightButtonIconOnPress}/>
             );
         }
@@ -42,7 +42,7 @@ class NavBar extends React.Component {
             <IconFontButton iconName={isBack ? 'ios-arrow-back' : leftButtonIcon }
                             containerStyle = { styles.buttonContainer }
                             iconColor='#fff'
-                            iconSize={20}
+                            iconSize={this.props.leftButtonIconSize}
                             onPress={()=> isBack ? navigator.pop() : leftButtonIconOnPress}/>
         );
     }
@@ -100,7 +100,10 @@ let styles = StyleSheet.create({
 
 NavBar.propTypes = propTypes;
 
-NavBar.defaultProps ={ };
+NavBar.defaultProps = {
+    leftButtonIconSize : 20,
+    rightButtonIconSize : 20,
+};
 
 export default NavBar;
 

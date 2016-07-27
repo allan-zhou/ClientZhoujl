@@ -11,7 +11,7 @@ export default class Discover extends React.Component{
 
         return(
             <View style={styles.container}>
-                <NavBar title='发现' navigator={navigator} />
+                <NavBar title='发现' navigator={navigator} rightButtonIcon='ios-add' rightButtonIconSize={30} />
                 <View style={styles.content}>
                     <Text>Discover Page</Text>
                 </View>
