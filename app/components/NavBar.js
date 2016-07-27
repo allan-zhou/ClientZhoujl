@@ -2,7 +2,7 @@
  * Created by ZHOU on 2016/7/11.
  */
 import React, { Component,PropTypes } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity,TouchableHighlight } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import Icon from 'react-native-vector-icons/Ionicons';
 import IconFontButton from  './IconFontButton';
@@ -10,38 +10,91 @@ import IconFontButton from  './IconFontButton';
 const propTypes={
     title : PropTypes.string.isRequired,
     navigator: PropTypes.object.isRequired,
-    rightButton: PropTypes.object,
+    rightButtonIcon: PropTypes.string,
+    rightButtonIconOnPress:PropTypes.func,
+    leftButtonIcon:PropTypes.string,
+    leftButtonIconOnPress:PropTypes.func,
 };
 
 class NavBar extends React.Component {
 
-    _renderLeftButton(navigator){
+    renderRightButtonIcon(rightButtonIcon, rightButtonIconOnPress){
 
-        if (navigator && navigator.getCurrentRoutes().length > 1) {
-
-            let backButton = (<Icon name="ios-arrow-back" size={14} color="#fff" onPress={ ()=>navigator.pop() } />);
-
-            return backButton;
+        if (rightButtonIcon) {
+            return (
+                <IconFontButton iconName={ rightButtonIcon }
+                                containerStyle = { styles.buttonContainer }
+                                iconColor='#fff'
+                                iconSize={20}
+                                onPress={()=> rightButtonIconOnPress}/>
+            );
         }
-        return {};
+        return;
+    }
+
+    renderLeftButtonIcon(navigator,leftButtonIcon,leftButtonIconOnPress) {
+
+        let isBack = navigator && navigator.getCurrentRoutes().length > 1;
+
+        if(!isBack&&!leftButtonIcon) return null;
+
+        return (
+            <IconFontButton iconName={isBack ? 'ios-arrow-back' : leftButtonIcon }
+                            containerStyle = { styles.buttonContainer }
+                            iconColor='#fff'
+                            iconSize={20}
+                            onPress={()=> isBack ? navigator.pop() : leftButtonIconOnPress}/>
+        );
     }
 
     render(){
-        const { navigator } = this.props.navigator;
+        const {title, navigator, rightButtonIcon, rightButtonIconOnPress,leftButtonIcon,leftButtonIconOnPress} = this.props;
 
         return(
-            <NavigationBar style={styles.navBar}
-                           title={{ title: this.props.title , tintColor:'#fff' } }
-                           leftButton = { ()=> <IconFontButton name="ios-arrow-back" size={14} color="#fff" onPress={ ()=>navigator.pop() } /> }
-                           rightButton = { this.props.rightButton } >
-            </NavigationBar>
+            <View style={ styles.navBarContainer }>
+                { this.renderLeftButtonIcon(navigator, leftButtonIcon, leftButtonIconOnPress) }
+
+                <View style={ styles.titleContainer }>
+                    <Text style={ styles.titleText }>{ title }</Text>
+                </View>
+
+                { this.renderRightButtonIcon(rightButtonIcon, rightButtonIconOnPress) }
+
+            </View>
         );
     }
 }
 
 let styles = StyleSheet.create({
-    navBar:{
-        backgroundColor:'#333'
+    navBarContainer:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'nowrap',
+        backgroundColor:'#333',
+        height:44,
+        padding:0,
+    },
+    titleContainer:{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    titleText:{
+        fontSize:17,
+        color:'#fff',
+        letterSpacing: 0.5,
+        fontWeight: '500',
+    },
+    buttonContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:44,
+        height:44,
     },
 });
 
