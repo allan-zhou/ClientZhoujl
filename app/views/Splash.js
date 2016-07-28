@@ -21,7 +21,7 @@ class Splash extends React.Component {
                 component: MainContainer,
                 name: 'Main'
             });
-        }, 2000);
+        }, 1000);
     }
 
     componentWillUnmount() {

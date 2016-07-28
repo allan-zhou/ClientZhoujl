@@ -7,17 +7,9 @@ import { setTitle } from '../../actions/MainAction'
 
 export default class Life extends React.Component{
 
-    componentDidMount() {
-        const { dispatch } = this.props;
-        //dispatch(setTitle('生活圈'));
-
-        console.log('Life componentDidMount');
-    }
-
     render(){
         const { navigator, MainReducer} = this.props;
 
-        console.log(MainReducer);
         return(
             <View style={styles.container}>
                 <View style={styles.content}>

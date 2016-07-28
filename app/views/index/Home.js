@@ -3,33 +3,25 @@
  */
 import React, { Component }from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Button from 'react-native-button';
-import Discover from './Discover';
-import { setTitle } from '../../actions/MainAction'
+import BlockSplitBar from '../../components/BlockSplitBar'
+import BlockTitle from '../../components/BlockTitle'
 
-
+import TopProjects from './userControls/TopProjects'
 class Home extends React.Component{
     constructor(props){
         super(props);
-        console.log('Home constructor');
     }
 
-    componentDidMount () {
-        const { dispatch } = this.props;
-        //dispatch(setTitle('首页'));
-
-        console.log('Home componentDidMount');
-    }
 
     render(){
         const { navigator, MainReducer } = this.props;
+
         console.log(MainReducer);
         return(
             <View style={styles.container}>
-                <View style={styles.content}>
-                    <Text>Home Page</Text>
-                </View>
-
+                <TopProjects  height={220} />
+                <BlockSplitBar />
+                <BlockTitle title='热门活动' />
             </View>
         );
     }
@@ -37,17 +29,9 @@ class Home extends React.Component{
 
 let styles = StyleSheet.create({
     container: {
-        flex:1,
+        //flex:1,
     },
-    content:{
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    list:{
-
-    },
-    listItem:{
+    topProjects:{
 
     },
 });

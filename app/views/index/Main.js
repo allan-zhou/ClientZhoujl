@@ -3,7 +3,6 @@
  */
 import React, { Component }from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Button from 'react-native-button';
 import ScrollableTabView  from 'react-native-scrollable-tab-view';
 import NavBar from '../../components/NavBar'
 import TabBar from '../../components/TabBar'
@@ -40,8 +39,7 @@ class Main extends React.Component {
             <View style={styles.container}>
                 <NavBar title={ MainReducer.title } navigator={ navigator}  />
                 <View style={ styles.content }>
-                    <ScrollableTabView tyle={styles.tabContainer}
-                                       tabBarPosition='bottom'
+                    <ScrollableTabView tabBarPosition='bottom'
                                        onChangeTab={ (tabs)=>this.onChangeTab(tabs) }
                                        renderTabBar={() => <TabBar style={ styles.tabBar }
                                                                    tabBarData = {tabBarData} />}>
@@ -62,9 +60,6 @@ let styles = StyleSheet.create({
     },
     content:{
         flex:1,
-    },
-    tabContainer:{
-
     },
     tabBar:{
 
