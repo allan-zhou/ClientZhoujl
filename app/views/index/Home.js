@@ -4,34 +4,30 @@
 import React, { Component }from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Button from 'react-native-button';
-import NavBar from '../../components/NavBar'
-import { toastShort } from  '../../utils/ToastUtil'
 import Discover from './Discover';
+import { setTitle } from '../../actions/MainAction'
 
 
 class Home extends React.Component{
-    _redirectToDiscover(){
-        const { navigator } = this.props;
+    constructor(props){
+        super(props);
+        console.log('Home constructor');
+    }
 
-        navigator.push({
-            component: Discover,
-            name: 'Discover'
-        });
+    componentDidMount () {
+        const { dispatch } = this.props;
+        //dispatch(setTitle('首页'));
+
+        console.log('Home componentDidMount');
     }
 
     render(){
-        const { navigator, HomeReducer } = this.props;
-
+        const { navigator, MainReducer } = this.props;
+        console.log(MainReducer);
         return(
             <View style={styles.container}>
-                <NavBar title='首页' navigator={ navigator}  />
-                <View style={ styles.content }>
-                    <Button
-                        style={{fontSize: 20, color: 'green'}}
-                        styleDisabled={{color: 'red'}}
-                        onPress={() => this._redirectToDiscover()}>
-                        Press Me!
-                    </Button>
+                <View style={styles.content}>
+                    <Text>Home Page</Text>
                 </View>
 
             </View>

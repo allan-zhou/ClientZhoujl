@@ -7,7 +7,7 @@ import {
     Image,
     InteractionManager
 } from 'react-native';
-import HomeContainer from '../containers/HomeContainer';
+import MainContainer from '../containers/MainContainer';
 
 const maxHeight = Dimensions.get('window').height;
 const maxWidth = Dimensions.get('window').width;
@@ -18,8 +18,8 @@ class Splash extends React.Component {
         const { navigator } = this.props;
         this.timer = setTimeout(() => {
             navigator.resetTo({
-                component: HomeContainer,
-                name: 'Home'
+                component: MainContainer,
+                name: 'Main'
             });
         }, 2000);
     }

@@ -10,18 +10,17 @@ const propTypes = {
     activeTab: React.PropTypes.number,
     tabs: React.PropTypes.array,
     tabBarData: React.PropTypes.array,
-    onPress: React.PropTypes.func,
 };
 
 class TabBar extends Component {
     constructor(props){
         super (props);
 
-        this.onProess = this.onProess.bind(this);
+        this.onPress = this.onPress.bind(this);
     }
 
-    onProess(tabIndex){
-        this.props.goToPage(tabIndex)
+    onPress(tabIndex){
+        this.props.goToPage(tabIndex);
     }
 
     renderTabOption(tabLabel, tabIndex){
@@ -30,7 +29,7 @@ class TabBar extends Component {
 
         return (
             <TouchableOpacity key={ tabLabel } style={styles.tab} activeOpacity={1}
-                              onPress={() => this.onProess(tabIndex)}>
+                              onPress={() => this.onPress(tabIndex) }>
                 <Icon style={ styles.icon } name={ iconName } />
                 <Text style={ styles.text }>
                     { this.props.tabBarData[tabIndex].CnName }

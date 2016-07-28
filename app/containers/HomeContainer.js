@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import Home from '../views/index/Home';
 
 class HomeContainer extends React.Component {
-    componentDidMount() {
-
-    }
-
     render() {
         return (
             <Home {...this.props} />

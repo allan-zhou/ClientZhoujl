@@ -10,15 +10,7 @@ const initialState = {
 
 export default function HomeReducer(state = initialState, action) {
     switch (action.type) {
-        case types.FETCH_HOME:
-            return Object.assign({}, state, {
-                loading: true
-            });
-        case types.RECEIVE_HOME:
-            return Object.assign({}, state, {
-                loading: false,
-                typeList: action.typeList
-            });
+
         default:
             return state;
     }

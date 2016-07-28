@@ -3,15 +3,27 @@
  */
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import NavBar from '../../components/NavBar'
 
 export default class Discover extends React.Component{
+    constructor(props){
+        super(props);
+        console.log('Discover constructor');
+    }
+
+    componentDidMount() {
+        const { dispatch } = this.props;
+        //dispatch(setTitle('发现'));
+
+        console.log('Discover componentDidMount');
+    }
+
     render(){
-        const { navigator } = this.props;
+        const { navigator, MainReducer,dispatch } = this.props;
+
+        console.log(MainReducer);
 
         return(
             <View style={styles.container}>
-                <NavBar title='发现' navigator={navigator} rightButtonIcon='ios-add' rightButtonIconSize={30} />
                 <View style={styles.content}>
                     <Text>Discover Page</Text>
                 </View>
