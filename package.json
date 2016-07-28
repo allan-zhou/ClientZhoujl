@@ -9,6 +9,7 @@
     "react": "~15.2.0",
     "react-native": "^0.30.0",
     "react-native-button": "^1.6.0",
+    "react-native-page-swiper": "^0.3.0",
     "react-native-root-toast": "^1.0.3",
     "react-native-scrollable-tab-view": "^0.5.3",
     "react-native-swiper": "^1.4.7",
