@@ -6,7 +6,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import Button from 'react-native-button';
 import ScrollableTabView  from 'react-native-scrollable-tab-view';
 import NavBar from '../../components/NavBar'
-import TabBar from './TabBar'
+import TabBar from '../../components/TabBar'
 import Home from './Home';
 import Discover from './Discover';
 import Life from './Life';
